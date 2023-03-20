@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { User } from './typeorm/entities/User';
+import { UsersModule } from './users/users.module';
 
 
 @Module({
@@ -14,11 +15,12 @@ import { User } from './typeorm/entities/User';
       port: 3306,
       username: 'root',
       password: 'Zaq12wsx',
-      database: 'testNestJS',
-      entities: [User,Client],
+      database: 'nestJSData',
+      entities: [User, Client],
       synchronize: true,
     }),
-   
+    UsersModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -14,6 +14,5 @@ export class User {
   @Column()
   created_at: Date;
 
-  @Column({ nullable: true })
-  authStrategy: string
+
 }
