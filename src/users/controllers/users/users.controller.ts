@@ -1,3 +1,4 @@
+import { CreateUserProfileDto } from './../../dto/CreateUserProfile.dto';
 import { CreateUserDto } from './../../dto/CreateUser.dto';
 
 import {
@@ -19,17 +20,17 @@ export class UsersController {
 
   @Get()
   getUser() {
-    this.usersService.getAll();
+    return this.usersService.getAll();
   }
 
   @Get('/:id')
   getById(@Param('id', ParseIntPipe) id: number) {
-    this.usersService.getUserById(id)
+    return this.usersService.getUserById(id);
   }
 
   @Post()
   createUser(@Body() createUserDto: CreateUserDto) {
-    this.usersService.createUser(createUserDto);
+    return this.usersService.createUser(createUserDto);
   }
 
   @Put('/:id')
@@ -42,8 +43,20 @@ export class UsersController {
     }
   }
 
-  @Delete('/:id') 
-  deleteUser(@Param('id', ParseIntPipe) id: number,) {
-    this.usersService.deleteUserById(id)
+  @Delete('/:id')
+  deleteUser(@Param('id', ParseIntPipe) id: number) {
+    this.usersService.deleteUserById(id);
+  }
+
+  @Post(':id/profile')
+  createUserProfile(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() createUserProfileDto: CreateUserProfileDto,
+  ) {
+    return this.usersService.createUserProfile(id, createUserProfileDto)
+  }
+  @Get('/profile')
+  findAllProfile() {
+    return this.usersService.getProfile();
   }
 }
